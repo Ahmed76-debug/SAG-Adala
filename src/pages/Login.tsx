@@ -14,13 +14,14 @@ import {
   BarChart3,
   Library,
   AlarmClock,
-} from "lucide-react";
+} from "lucide-//react"; // تأكد من المسار الصحيح هنا
 import { useApp } from "@/state/AppProvider";
 import { Button, Input, Field, Badge } from "@/components/ui/primitives";
+import { cn } from "@/lib/cn";
+
 const DEMO_ACCOUNTS = [
   { name: "مدير النظام", username: "admin", password: "admin123" },
 ];
-import { cn } from "@/lib/cn";
 
 const HIGHLIGHTS = [
   { icon: Scale3D, title: "إدارة القضايا والموكلين", text: "ملف واحد لكل قضية يجمع العقود والأتعاب والمذكرات والمواعيد." },
@@ -34,22 +35,45 @@ export default function Login() {
   const { login } = useApp();
   const navigate = useNavigate();
   const [username, setUsername] = useState("admin");
-  const [password, setPassword] = useState("Admin@2025");
+  const [password, setPassword] = useState("123"); // تم التعديل ليتطابق مع MongoDB
   const [show, setShow] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // تنبيه 1: للتأكد أن الزر يعمل
+    alert("1. تم الضغط على زر الدخول.. جاري الاتصال بالسيرفر");
+    
     setError("");
     setLoading(true);
-    const ok = await login(username.trim(), password);
-    setLoading(false);
-    if (!ok) {
-      setError("بيانات الدخول غير صحيحة. تحقّق من اسم المستخدم وكلمة المرور.");
-      return;
+
+    try {
+      // إنشاء "موقت" لكي لا تدور الدائرة للأبد
+      const loginPromise = login(username.trim(), password);
+      const timeoutPromise = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error("Timeout")), 10000)
+      );
+
+      // تنفيذ أيهما أسرع: الدخول أو انتهاء الوقت
+      const ok = await Promise.race([loginPromise, timeoutPromise]);
+      
+      if (!ok) {
+        setError("بيانات الدخول غير صحيحة. تحقّق من اسم المستخدم وكلمة المرور.");
+      } else {
+        alert("تم تسجيل الدخول بنجاح!");
+        navigate("/");
+      }
+    } catch (err: any) {
+      if (err.message === "Timeout") {
+        setError("السيرفر استغرق وقتاً طويلاً للرد. يرجى المحاولة مرة أخرى.");
+      } else {
+        setError("حدث خطأ تقني: " + err.message);
+      }
+    } finally {
+      setLoading(false);
     }
-    navigate("/");
   };
 
   const quick = async (u: string, p: string) => {
@@ -57,10 +81,15 @@ export default function Login() {
     setPassword(p);
     setLoading(true);
     setError("");
-    const ok = await login(u, p);
-    setLoading(false);
-    if (ok) navigate("/");
-    else setError("تعذّر الدخول بالحساب التجريبي.");
+    try {
+      const ok = await login(u, p);
+      if (ok) navigate("/");
+      else setError("تعذّر الدخول بالحساب التجريبي.");
+    } catch (err) {
+      setError("خطأ في الاتصال بالحساب التجريبي.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -76,7 +105,7 @@ export default function Login() {
             <div className="flex size-12 items-center justify-center rounded-2xl bg-gradient-to-br from-accent-2 to-accent text-accent-ink shadow-xl">
               <Scale3D className="size-6" />
             </div>
-            <div>
+            <div className="relative">
               <div className="font-display text-[20px] font-bold text-ink">عدالة</div>
               <div className="text-[12px] text-muted">منصة إدارة أعمال المحاماة</div>
             </div>
@@ -94,7 +123,7 @@ export default function Login() {
           </h1>
           <p className="mt-5 text-[15px] leading-relaxed text-muted">
             منصة واحدة تجمع ملفات القضايا والموكلين والاتفاقيات والأتعاب والوثائق والأرشيف والمكتبة
-            القانونية — بتقنية تحليلية دقيقة أُنجزت لتخدم يوميات المحامٍ المحترف.
+            القانونية — بتقنية تحليلية دقيقة أُنجزت لخدمة يوميات المحامٍ المحترف.
           </p>
 
           <div className="mt-9 grid gap-3 sm:grid-cols-2">
@@ -113,7 +142,7 @@ export default function Login() {
 
         <div className="relative flex items-center gap-2 text-[12px] text-faint">
           <ShieldCheck className="size-4" />
-          بياناتك محفوظة محليًا في جهازك · تشفير PBKDF2 · لا تُرسل لأي خادم
+          بياناتك محفوظة سحابياً في MongoDB Atlas وتدار عبر Vercel
         </div>
       </div>
 
@@ -124,7 +153,7 @@ export default function Login() {
             <div className="flex size-11 items-center justify-center rounded-xl bg-gradient-to-br from-accent-2 to-accent text-accent-ink">
               <Scale3D className="size-5" />
             </div>
-            <div>
+            <div className="relative">
               <div className="font-display text-[17px] font-bold">عدالة</div>
               <div className="text-[11.5px] text-muted">إدارة أعمال المحاماة</div>
             </div>
@@ -132,7 +161,7 @@ export default function Login() {
 
           <h2 className="text-[26px] font-bold text-ink">تسجيل الدخول</h2>
           <p className="mt-1.5 text-[13.5px] text-muted">
-            أدخل بياناتك للوصول إلى مكتبك. جميع الملفات محفوظة بأمان على جهازك.
+            أدخل بياناتك للوصول إلى مكتبك.
           </p>
 
           <form onSubmit={submit} className="mt-7 space-y-4">

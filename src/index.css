@@ -1,0 +1,457 @@
+@import "tailwindcss";
+
+/* ============================================================
+   هوية "عدالة" — نظام تصميم قائم على الرموز (Design Tokens)
+   Midnight Navy × Legal Gold — هادئ، فاخر، وموثوق
+   ============================================================ */
+
+:root {
+  --bg: #f2f4f9;
+  --bg-elev: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f7f9fc;
+  --surface-3: #eef2f8;
+  --line: #e3e8f1;
+  --line-soft: #edf1f7;
+  --ink: #0a1020;
+  --ink-soft: #2b3448;
+  --muted: #6b7794;
+  --faint: #9aa4ba;
+
+  --brand: #14213c;
+  --brand-2: #0c162b;
+  --brand-ink: #ffffff;
+  --brand-soft: #eaeef6;
+
+  --accent: #b08419;
+  --accent-ink: #ffffff;
+  --accent-soft: #fdf6e3;
+  --accent-2: #d4a92c;
+
+  --ok: #0f8a5f;
+  --ok-soft: #e6f6ef;
+  --warn: #b3720a;
+  --warn-soft: #fdf2e0;
+  --danger: #c02b3a;
+  --danger-soft: #fdecee;
+  --info: #2563c9;
+  --info-soft: #e8f0fd;
+
+  --shadow-soft: 0 1px 2px rgba(12, 20, 40, 0.04), 0 8px 24px -12px rgba(12, 20, 40, 0.14);
+  --shadow-lift: 0 2px 4px rgba(12, 20, 40, 0.05), 0 18px 40px -16px rgba(12, 20, 40, 0.28);
+  --shadow-pop: 0 24px 70px -20px rgba(8, 14, 30, 0.42);
+  --ring: rgba(176, 132, 25, 0.35);
+  --glass: rgba(255, 255, 255, 0.72);
+  --hairline: rgba(10, 16, 32, 0.07);
+}
+
+[data-theme="dark"] {
+  --bg: #070a12;
+  --bg-elev: #0c1120;
+  --surface: #0e1523;
+  --surface-2: #121a2b;
+  --surface-3: #182136;
+  --line: #1e2942;
+  --line-soft: #172034;
+  --ink: #e9edf7;
+  --ink-soft: #c2cade;
+  --muted: #8b97b1;
+  --faint: #63708c;
+
+  --brand: #1b2846;
+  --brand-2: #131d34;
+  --brand-ink: #eef2fb;
+  --brand-soft: #172034;
+
+  --accent: #d9b451;
+  --accent-ink: #0a0f1c;
+  --accent-soft: #2a2413;
+  --accent-2: #f0d98a;
+
+  --ok: #34d399;
+  --ok-soft: #10251f;
+  --warn: #fbbf24;
+  --warn-soft: #2a2110;
+  --danger: #fb7185;
+  --danger-soft: #2b1418;
+  --info: #60a5fa;
+  --info-soft: #12203a;
+
+  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 30px -14px rgba(0, 0, 0, 0.7);
+  --shadow-lift: 0 2px 6px rgba(0, 0, 0, 0.45), 0 22px 48px -18px rgba(0, 0, 0, 0.8);
+  --shadow-pop: 0 30px 80px -22px rgba(0, 0, 0, 0.85);
+  --ring: rgba(217, 180, 81, 0.4);
+  --glass: rgba(14, 21, 35, 0.72);
+  --hairline: rgba(255, 255, 255, 0.07);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-elev: var(--bg-elev);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-line: var(--line);
+  --color-line-soft: var(--line-soft);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-brand: var(--brand);
+  --color-brand-2: var(--brand-2);
+  --color-brand-ink: var(--brand-ink);
+  --color-brand-soft: var(--brand-soft);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-ok: var(--ok);
+  --color-ok-soft: var(--ok-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+
+  --font-sans: "IBM Plex Sans Arabic", "Segoe UI", system-ui, sans-serif;
+  --font-display: "Tajawal", "IBM Plex Sans Arabic", system-ui, sans-serif;
+  --font-serif: "Amiri", "Times New Roman", serif;
+  --font-latin: "Inter", system-ui, sans-serif;
+
+  --radius-4xl: 1.75rem;
+  --radius-5xl: 2.25rem;
+
+  --shadow-soft: var(--shadow-soft);
+  --shadow-lift: var(--shadow-lift);
+  --shadow-pop: var(--shadow-pop);
+
+  --animate-fade-up: fade-up 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-fade-in: fade-in 0.35s ease both;
+  --animate-scale-in: scale-in 0.18s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-slide-up: slide-up 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-shimmer: shimmer 1.6s linear infinite;
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-pulse-ring: pulse-ring 2.4s ease-out infinite;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 var(--ring); }
+  70% { box-shadow: 0 0 0 12px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+@keyframes slide-in-end {
+  from { transform: translateX(-104%); }
+  to { transform: translateX(0); }
+}
+
+
+@layer base {
+  * {
+    border-color: var(--line);
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "kern";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overscroll-behavior-y: none;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+  input, textarea, select, button {
+    font-family: inherit;
+  }
+  input[type="date"]::-webkit-calendar-picker-indicator,
+  input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    filter: invert(var(--cal-invert, 0));
+    opacity: 0.55;
+    cursor: pointer;
+  }
+  [data-theme="dark"] input[type="date"]::-webkit-calendar-picker-indicator,
+  [data-theme="dark"] input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    --cal-invert: 1;
+  }
+  /* أرقام لاتينية للأرقام والقيم الرقمية */
+  .num {
+    font-family: var(--font-latin);
+    font-variant-numeric: tabular-nums;
+    direction: ltr;
+    display: inline-block;
+  }
+}
+
+@layer components {
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 1.25rem;
+    box-shadow: var(--shadow-soft);
+  }
+  .card-hover {
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s, border-color 0.25s;
+  }
+  .card-hover:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lift);
+    border-color: color-mix(in srgb, var(--accent) 40%, var(--line));
+  }
+  .glass {
+    background: var(--glass);
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+  }
+  .hairline {
+    border-color: var(--hairline);
+  }
+  .grad-text {
+    background: linear-gradient(120deg, var(--accent-2), var(--accent) 45%, var(--accent-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .grad-brand {
+    background: linear-gradient(135deg, var(--brand), var(--brand-2));
+  }
+  .gold-line {
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  }
+  .mesh {
+    background-image:
+      radial-gradient(60rem 32rem at 85% -10%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 60%),
+      radial-gradient(48rem 30rem at 5% 0%, color-mix(in srgb, var(--info) 14%, transparent), transparent 55%),
+      radial-gradient(40rem 26rem at 50% 110%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 60%);
+  }
+  .skeleton {
+    background: linear-gradient(90deg, var(--surface-2) 25%, var(--surface-3) 37%, var(--surface-2) 63%);
+    background-size: 400% 100%;
+    animation: var(--animate-shimmer);
+    border-radius: 0.75rem;
+  }
+  .scroll-thin {
+    scrollbar-width: thin;
+    scrollbar-color: var(--line) transparent;
+  }
+  .scroll-thin::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .scroll-thin::-webkit-scrollbar-thumb {
+    background: var(--line);
+    border-radius: 99px;
+  }
+  .scroll-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .divider-gold {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0.6;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--brand), var(--brand-2));
+    color: var(--brand-ink);
+    border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+    box-shadow: 0 8px 22px -12px color-mix(in srgb, var(--brand) 90%, transparent);
+  }
+  [data-theme="dark"] .btn-primary {
+    background: linear-gradient(135deg, var(--accent-2), var(--accent));
+    color: var(--accent-ink);
+    border-color: color-mix(in srgb, var(--accent-2) 60%, transparent);
+    box-shadow: 0 8px 24px -10px color-mix(in srgb, var(--accent) 60%, transparent);
+  }
+  .btn-primary:hover {
+    filter: brightness(1.08);
+  }
+  .input-base {
+    width: 100%;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: 0.85rem;
+    padding: 0.6rem 0.85rem;
+    font-size: 0.925rem;
+    color: var(--ink);
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  }
+  .input-base::placeholder {
+    color: var(--faint);
+  }
+  .input-base:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: var(--surface);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 16%, transparent);
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    border-radius: 999px;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1.5;
+    white-space: nowrap;
+  }
+}
+
+/* ======================= الطباعة ======================= */
+.print-root {
+  display: none;
+}
+
+@media print {
+  /* فرض رموز النهار داخل حاوية الطباعة — حتى يبقى النص مقروءًا في الوضع الليلي */
+  #print-root {
+    --bg: #ffffff;
+    --bg-elev: #ffffff;
+    --surface: #ffffff;
+    --surface-2: #f7f9fc;
+    --surface-3: #eef2f8;
+    --line: #d5dbe6;
+    --line-soft: #e6eaf1;
+    --ink: #0a1020;
+    --ink-soft: #2b3448;
+    --muted: #5b6579;
+    --faint: #8b94a7;
+    --brand: #14213c;
+    --brand-2: #0c162b;
+    --brand-ink: #ffffff;
+    --brand-soft: #eaeef6;
+    --accent: #b08419;
+    --accent-ink: #ffffff;
+    --accent-soft: #fdf6e3;
+    --accent-2: #d4a92c;
+    --ok: #0f8a5f;
+    --ok-soft: #e6f6ef;
+    --warn: #b3720a;
+    --warn-soft: #fdf2e0;
+    --danger: #c02b3a;
+    --danger-soft: #fdecee;
+    --info: #2563c9;
+    --info-soft: #e8f0fd;
+    --shadow-soft: none;
+    --shadow-lift: none;
+    --shadow-pop: none;
+    --ring: rgba(176, 132, 25, 0.35);
+    --glass: #ffffff;
+    --hairline: rgba(10, 16, 32, 0.07);
+  }
+
+  @page {
+    size: A4;
+    margin: 16mm 14mm 18mm;
+  }
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  body * {
+    visibility: hidden !important;
+  }
+  #print-root,
+  #print-root * {
+    visibility: visible !important;
+  }
+  #print-root {
+    display: block !important;
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    width: 100%;
+    font-family: var(--font-sans);
+    color: #000;
+    background: #fff;
+  }
+  /* تعطيل قواعد الوضع الليلي داخل مساحة الطباعة (أ specificity أعلى) */
+  #print-root .btn-primary {
+    background: var(--brand);
+    color: var(--brand-ink);
+    border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+    box-shadow: none;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: revert !important;
+  }
+  .page-break {
+    break-after: page;
+  }
+  table {
+    break-inside: auto;
+  }
+  tr {
+    break-inside: avoid;
+  }
+  thead {
+    display: table-header-group;
+  }
+}
+
+/* ======================= مساعدات ======================= */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.sr-only-focusable:not(:focus):not(:focus-within) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+.text-balance {
+  text-wrap: balance;
+}

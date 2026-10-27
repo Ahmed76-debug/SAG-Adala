@@ -1,0 +1,22 @@
+# التبعيات
+node_modules/
+
+# مخرجات البناء
+dist/
+*.tsbuildinfo
+
+# متغيرات البيئة
+.env
+.env.local
+.env.*.local
+
+# ملفات النظام والمحررات
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# ملفات مؤقتة
+*.log
+npm-debug.log*
+out.txt

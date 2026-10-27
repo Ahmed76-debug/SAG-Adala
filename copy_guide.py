@@ -1,0 +1,6 @@
+import shutil, os
+src = r'C:\Users\CONNECT\Documents\Default Project\adala-platform\???? ???????? - ?? ??????? ??? ????? ??????.docx'
+dst = r'C:\Users\CONNECT\Documents\Default Project\adala-platform\دليل المطور التقني - مسار تطوير منصة عدالة خطوة بخطوة.docx'
+shutil.copy2(src, dst)
+print(os.path.exists(dst))
+print(os.path.getsize(dst))

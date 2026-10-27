@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F0D98A" />
+      <stop offset="55%" stop-color="#C9A227" />
+      <stop offset="100%" stop-color="#8A6B12" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="#0A0F1C" />
+  <rect x="18" y="18" width="476" height="476" rx="96" fill="none" stroke="url(#g)" stroke-width="6" opacity=".55" />
+  <g fill="url(#g)">
+    <path d="M256 96c-8 0-14 6-14 14v18h-22c-11 0-20 9-20 20v10h-6c-11 0-20 9-20 20v58c0 11 9 20 20 20h8v58c0 8 6 14 14 14h14c8 0 14-6 14-14v-24h52v24c0 8 6 14 14 14h14c8 0 14-6 14-14v-58h8c11 0 20-9 20-20v-58c0-11-9-20-20-20h-6v-10c0-11-9-20-20-20h-22v-18c0-8-6-14-14-14h-14zm-56 108h28v38h-28v-38zm56 0h56v38h-56v-38zm-28 62c0-14 11-25 25-25s25 11 25 25-11 25-25 25-25-11-25-25z" transform="translate(0,60) scale(0.86) translate(45,0)" />
+  </g>
+  <text x="256" y="430" font-family="Tajawal, Arial" font-size="72" font-weight="700" fill="url(#g)" text-anchor="middle">ع</text>
+</svg>

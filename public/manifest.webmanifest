@@ -1,0 +1,22 @@
+{
+  "name": "عدالة — منصة إدارة أعمال المحاماة",
+  "short_name": "عدالة",
+  "description": "نظام متكامل لإدارة القضايا والموكلين والمواعيد والأرشيف والمكتبة القانونية",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0A0F1C",
+  "theme_color": "#0A0F1C",
+  "dir": "rtl",
+  "lang": "ar",
+  "categories": ["business", "productivity", "utilities"],
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/icon-maskable.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "قضية جديدة", "short_name": "قضية", "url": "/matters?new=1" },
+    { "name": "موعد جديد", "short_name": "موعد", "url": "/calendar?new=1" },
+    { "name": "البورتفوليو", "short_name": "البورتفوليو", "url": "/portfolio" }
+  ]
+}
